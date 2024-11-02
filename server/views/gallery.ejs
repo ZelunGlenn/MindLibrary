@@ -1,0 +1,17 @@
+<%- include('partials/header.ejs') %>
+
+<form action="/" method="get">
+  <button type="submit">Back</button>
+</form>
+
+<h1>Gallery</h1>
+
+<div>
+  <% gallery.forEach(image => { %>
+    <img src=<%= image %> alt="image">
+  <% }) %>
+</div>
+
+
+
+<%- include('partials/footer.ejs') %>

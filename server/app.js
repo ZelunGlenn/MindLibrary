@@ -12,6 +12,8 @@ const port = 4000
 dotenv.config()
 const apikey = process.env.API_KEY
 
+let tempGallery = []
+
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -42,7 +44,17 @@ app.get('/prompt', async (req, res) => {
 
   // testing purpose: https://pub-3626123a908346a7a8be8d9295f44e26.r2.dev/generations/d6003dc0-be83-4514-a612-d001c9036c5f-0.png
   res.json({ output: 'https://pub-3626123a908346a7a8be8d9295f44e26.r2.dev/generations/d6003dc0-be83-4514-a612-d001c9036c5f-0.png' });
+})
 
+app.post('/save', (req, res) => {
+  // temp save into array
+  tempGallery.push(req.body.params.image)
+  res.json({ message: 'Image saved' })
+})
+
+app.get('/view', (req, res) => {
+  // temp view into array
+  res.json({ gallery: tempGallery })
 })
 
 

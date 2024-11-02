@@ -15,14 +15,25 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
+app.get('/gallery', async (req, res) => {
+  const gallery = await axios.get('http://localhost:4000/view');
+  res.render('gallery', {gallery: gallery.data.gallery})
+})
+
 app.post('/create', async (req, res) => {
   const { prompt } = req.body;
-  console.log(prompt);
   const response = await axios.get('http://localhost:4000/prompt', { 
     params: { prompt }
   });
   const image = response.data.output;
   res.render('index', { image });
+})
+
+app.post('/save', async (req, res) => {
+  await axios.post('http://localhost:4000/save', {
+    params: { image: req.body.image_url }
+  })
+  res.redirect('/')
 })
 
 

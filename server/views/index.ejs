@@ -1,5 +1,9 @@
 <%- include('partials/header.ejs') %>
 
+<form action="/gallery" method="get">
+  <button type="submit">Gallery</button>
+</form>
+
 <h1>main</h1>
 
 <div>
@@ -14,5 +18,14 @@
   <input type="text" name="prompt" placeholder="Type your prompt">
   <button type="submit">Submit</button>
 </form>
+
+<% if (locals.image) { %>
+  <form action="/save" method="post">
+    <input type="text" name="image_url" id="" value="<%=image%>" hidden>
+    <button type="submit">Save</button>
+  </form>
+<%}%>
+
+
 
 <%- include('partials/footer.ejs') %>
