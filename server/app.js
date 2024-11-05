@@ -57,6 +57,12 @@ app.get('/view', (req, res) => {
   res.json({ gallery: tempGallery })
 })
 
+app.get('/detail', (req, res) => {
+  // temp view details into array
+  const result = tempGallery.find(image => image === req.query.image)
+  // const result = await axios.get(req.body.params.image)
+  res.json({ detail: result})
+})
 
 app.listen(port, () => {
   // server online

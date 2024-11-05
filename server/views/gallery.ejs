@@ -4,11 +4,17 @@
   <button type="submit">Back</button>
 </form>
 
+
+
 <h1>Gallery</h1>
 
 <div>
   <% gallery.forEach(image => { %>
     <img src=<%= image %> alt="image">
+    <form action="/detail" method="get">
+      <input type="text" name="image_url" value="<%= image %>" hidden>
+      <button type="submit">Detail</button>
+    </form>
   <% }) %>
 </div>
 

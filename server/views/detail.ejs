@@ -1,0 +1,17 @@
+<%- include('partials/header.ejs') %>
+
+<form action="/" method="get">
+  <button type="submit">Back</button>
+</form>
+
+<h1>Detail</h1>
+
+<img src=<%= image_detail %> alt="detail">
+
+<form action="/delete" method="post">
+  <input type="text" name="image_delete" value="<%=image_detail%>" hidden>
+  <button type="submit">Delete</button>
+</form>
+
+
+<%- include('partials/footer.ejs') %>

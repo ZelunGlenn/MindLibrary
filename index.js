@@ -20,6 +20,25 @@ app.get('/gallery', async (req, res) => {
   res.render('gallery', {gallery: gallery.data.gallery})
 })
 
+app.get('/detail', async (req, res) => {
+  const image = req.query.image_url;
+  const detail = await axios.get('http://localhost:4000/detail', {
+    params: { image }
+  });
+  console.log()
+  res.render('detail', { image_detail: detail.data.detail });
+})
+
+
+app.post('/delete', async (req, res) => {
+  const delete_image = req.params.image_delete
+  console.log(delete_image)
+  await axios.delete('http://localhost:4000/delete', {
+    params: { image: req.body.image_url},
+  })
+  res.redirect('/gallery')
+})
+
 app.post('/create', async (req, res) => {
   const { prompt } = req.body;
   const response = await axios.get('http://localhost:4000/prompt', { 
