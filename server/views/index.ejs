@@ -22,6 +22,7 @@
 <% if (locals.image) { %>
   <form action="/save" method="post">
     <input type="text" name="image_url" id="" value="<%=image%>" hidden>
+    <input type="text" name="prompt" id="" value="<%=prompt%>" hidden>
     <button type="submit">Save</button>
   </form>
 <%}%>

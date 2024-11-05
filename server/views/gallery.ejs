@@ -10,9 +10,9 @@
 
 <div>
   <% gallery.forEach(image => { %>
-    <img src=<%= image %> alt="image">
+    <img src=<%= image.url %> alt="image">
     <form action="/detail" method="get">
-      <input type="text" name="image_url" value="<%= image %>" hidden>
+      <input type="text" name="image_url" value="<%= image.url %>" hidden>
       <button type="submit">Detail</button>
     </form>
   <% }) %>

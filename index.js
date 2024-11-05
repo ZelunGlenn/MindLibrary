@@ -25,8 +25,8 @@ app.get('/detail', async (req, res) => {
   const detail = await axios.get('http://localhost:4000/detail', {
     params: { image }
   });
-  console.log()
-  res.render('detail', { image_detail: detail.data.detail });
+  const result = detail.data.detail.rows[0]
+  res.render('detail', { image_detail: result });
 })
 
 
@@ -45,12 +45,15 @@ app.post('/create', async (req, res) => {
     params: { prompt }
   });
   const image = response.data.output;
-  res.render('index', { image });
+  res.render('index', { image, prompt });
 })
 
 app.post('/save', async (req, res) => {
   await axios.post('http://localhost:4000/save', {
-    params: { image: req.body.image_url }
+    params: { 
+      image: req.body.image_url,
+      prompt: req.body.prompt
+     }
   })
   res.redirect('/')
 })

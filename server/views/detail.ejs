@@ -6,10 +6,11 @@
 
 <h1>Detail</h1>
 
-<img src=<%= image_detail %> alt="detail">
+<img src=<%= image_detail.url %> alt="detail">
+<p><%= image_detail.prompt %></p>
 
 <form action="/delete" method="post">
-  <input type="text" name="image_delete" value="<%=image_detail%>" hidden>
+  <input type="text" name="image_delete" value="<%=image_detail.url%>" hidden>
   <button type="submit">Delete</button>
 </form>
 
