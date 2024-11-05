@@ -31,11 +31,11 @@ app.get('/detail', async (req, res) => {
 
 
 app.post('/delete', async (req, res) => {
-  const delete_image = req.params.image_delete
-  console.log(delete_image)
-  await axios.delete('http://localhost:4000/delete', {
-    params: { image: req.body.image_url},
+  const delete_image = req.body.image_delete
+  const message = await axios.delete('http://localhost:4000/delete', {
+    params: { image: delete_image},
   })
+  console.log(message.data.message)
   res.redirect('/gallery')
 })
 

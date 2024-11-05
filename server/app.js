@@ -64,6 +64,14 @@ app.get('/detail', (req, res) => {
   res.json({ detail: result})
 })
 
+app.delete('/delete', (req, res) => {
+  // temp delete into array
+  // req.query.image
+  const delete_image = req.query.image
+  tempGallery = tempGallery.filter(image => image !== delete_image)
+  res.json({ message: 'Image deleted' })
+})
+
 app.listen(port, () => {
   // server online
   console.log(`Server is running on port ${port} at http://localhost:${port}`);
