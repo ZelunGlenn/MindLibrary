@@ -1,0 +1,7 @@
+/* to lisiten to the tailwind css */
+/* npx tailwindcss -i ./public/styles/main.css -o ./public/styles/output.css --watch */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+

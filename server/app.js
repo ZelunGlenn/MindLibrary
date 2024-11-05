@@ -54,6 +54,8 @@ app.get('/prompt', async (req, res) => {
   // // // result.data.output[0] is the output link
   // res.json({ output: result.data.output[0] });
 
+  
+
   // testing because it has limited access to the API
   res.json({ output: 'https://pub-3626123a908346a7a8be8d9295f44e26.r2.dev/generations/d6003dc0-be83-4514-a612-d001c9036c5f-0.png' });
 })
