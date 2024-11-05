@@ -4,4 +4,29 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: none;
+}
 
+
+.no-cursor * {
+  cursor: none !important;
+}
+
+/* button and input */
+button, input{
+  @apply px-8 py-4 rounded-xl border-2 border-black;
+}
+
+.circle {
+  height: 24px;
+  width: 24px;
+  border-radius: 24px;
+  background-color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

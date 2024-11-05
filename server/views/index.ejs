@@ -1,31 +1,34 @@
 <%- include('partials/header.ejs') %>
 
-<form action="/gallery" method="get">
-  <button type="submit">Gallery</button>
-</form>
-
-<h1>main</h1>
-
-<div>
-  <%if (locals.image) {%>
-    <img src=<%= image %> alt="image">
-  <%} else {%>
-    <p>There is no image</p>
-  <%}%>
-</div>
-
-<form action="/create" method="post">
-  <input type="text" name="prompt" placeholder="Type your prompt">
-  <button type="submit">Submit</button>
-</form>
-
-<% if (locals.image) { %>
-  <form action="/save" method="post">
-    <input type="text" name="image_url" id="" value="<%=image%>" hidden>
-    <input type="text" name="prompt" id="" value="<%=prompt%>" hidden>
-    <button type="submit">Save</button>
+<div class="w-screen flex flex-col justify-center items-center">
+  
+  <form action="/gallery" method="get" class="no-cursor">
+    <button type="submit" class="" >Gallery</button>
   </form>
-<%}%>
+  
+  <div class="w-[512px] h-[512px] flex justify-center items-center">
+    <%if (locals.image) {%>
+      <img src=<%= image %> alt="image">
+    <%} else {%>
+      <p>generate a new image 🍔</p>
+    <%}%>
+  </div>
+  
+  <form action="/create" method="post">
+    <input type="text" name="prompt" placeholder="Type your prompt">
+    <button type="submit">Submit</button>
+  </form>
+  
+  <% if (locals.image) { %>
+    <form action="/save" method="post">
+      <input type="text" name="image_url" id="" value="<%=image%>" hidden>
+      <input type="text" name="prompt" id="" value="<%=prompt%>" hidden>
+      <button type="submit">Save</button>
+    </form>
+  <%}%>
+
+
+</div>
 
 
 
