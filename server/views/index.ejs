@@ -3,32 +3,59 @@
 <div class="w-screen flex flex-col justify-center items-center">
   
   <form action="/gallery" method="get" class="no-cursor">
-    <button type="submit" class="" >Gallery</button>
+    <button type="submit" class="navigation">Gallery</button>
   </form>
   
-  <div class="w-[512px] h-[512px] flex justify-center items-center">
-    <%if (locals.image) {%>
-      <img src=<%= image %> alt="image">
-    <%} else {%>
-      <p>generate a new image 🍔</p>
-    <%}%>
+
+  <div class="w-[512px] h-[512px] flex justify-center items-center my-8">
+    <!-- spin animation -->
+
+    <% if (locals.image) { %>
+      <!-- Display the generated image -->
+      <img src="<%= image %>" alt="Generated Image">
+    <% } else { %>
+      <!-- Display spinner only when form is submitted, otherwise show initial message -->
+      <div id="loading-spinner" class="hidden flex items-center justify-center bg-opacity-50 z-50">
+        <div class="emoji-spinner">🍔</div>
+      </div>
+      <p id="initial-message">generate a new image 🍔</p>
+    <% } %>
   </div>
+
   
-  <form action="/create" method="post">
+  <form id="generate-form" action="/create" method="post">
     <input type="text" name="prompt" placeholder="Type your prompt">
     <button type="submit">Submit</button>
   </form>
   
   <% if (locals.image) { %>
-    <form action="/save" method="post">
+    <form action="/save" method="post" class="mt-8">
       <input type="text" name="image_url" id="" value="<%=image%>" hidden>
       <input type="text" name="prompt" id="" value="<%=prompt%>" hidden>
-      <button type="submit">Save</button>
+      <button type="submit" class="navigation">Save</button>
     </form>
   <%}%>
 
 
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('generate-form');
+    const loadingSpinner = document.getElementById('loading-spinner');
+    const initialMessage = document.getElementById('initial-message');
+
+    if (form) {
+      form.addEventListener('submit', function () {
+        // Show the loading spinner and hide the initial message when the form is submitted
+        loadingSpinner.classList.remove('hidden');
+        if (initialMessage) {
+          initialMessage.classList.add('hidden');
+        }
+      });
+    }
+  });
+</script>
 
 
 

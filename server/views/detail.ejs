@@ -3,7 +3,7 @@
 <div class="w-screen">
   <div class="w-full flex justify-center items-center no-cursor">
     <form action="/" method="get">
-      <button type="submit">Back</button>
+      <button type="submit" class="navigation">Back</button>
     </form>
   </div>
   
@@ -15,7 +15,7 @@
       <h1><%= image_detail.prompt %></h1>
       <form action="/delete" method="post">
         <input type="text" name="image_delete" value="<%=image_detail.url%>" hidden>
-        <button type="submit">Delete</button>
+        <button type="submit" class="navigation">Delete</button>
       </form>
     </div>
   </div>

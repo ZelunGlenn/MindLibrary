@@ -41,11 +41,16 @@ app.post('/delete', async (req, res) => {
 
 app.post('/create', async (req, res) => {
   const { prompt } = req.body;
-  const response = await axios.get('http://localhost:4000/prompt', { 
-    params: { prompt }
-  });
-  const image = response.data.output;
-  res.render('index', { image, prompt });
+  try {
+    const response = await axios.get('http://localhost:4000/prompt', { 
+      params: { prompt }
+    });
+    const image = response.data.output;
+    res.render('index', { image, prompt });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: 'An error occurred' });
+  }
 })
 
 app.post('/save', async (req, res) => {

@@ -30,3 +30,55 @@ button, input{
   top: 0;
   left: 0;
 }
+
+  /* CSS */
+  .emoji-spinner {
+    font-size: 2rem; /* Adjust size as needed */
+    animation: spinAndScale 1s linear infinite;
+  }
+
+  /* Keyframes for rotating and scaling */
+  @keyframes spinAndScale {
+    0% {
+      transform: rotate(0deg) scale(1);
+    }
+    50% {
+      transform: rotate(180deg) scale(1.2); /* Scale up */
+    }
+    100% {
+      transform: rotate(360deg) scale(1); /* Scale back to normal */
+    }
+  }
+
+  .hidden {
+    display: none;
+  }
+
+
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+  }
+  
+  /* Fade-out effect for when leaving the page */
+  .fade-out {
+    animation: fadeOut 0.5s forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }

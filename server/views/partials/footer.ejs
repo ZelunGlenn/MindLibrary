@@ -5,48 +5,99 @@
 </footer>
 
 <script>
-  const coords = {x: 0 , y: 0};
 
+  document.addEventListener('DOMContentLoaded', function() {
+    document.body.classList.add('fade-in');
+  });
+
+
+  const coords = { x: 0, y: 0 };
   const circles = document.querySelectorAll(".circle");
-
+  const buttons = document.querySelectorAll("button"); // Select all clickable elements
   
-  const colors = ["#d062ff", "#b46dfe", "#9975f8", "#807aef", "#6b7de3", "#597dd5", "#4e7dc4", "#497bb3"]
+  const originalColors = ["#d062ff", "#b46dfe", "#9975f8", "#807aef", "#6b7de3", "#597dd5", "#4e7dc4", "#497bb3"];
+  const hoverColors = ["#4dff00", "#89e700", "#adce00", "#c7b300", "#da9500", "#e87500", "#ef4e00", "#f10000"]; // Colors for hover
+  // background: linear-gradient(90deg, #4dff00, #89e700, #adce00, #c7b300, #da9500, #e87500, #ef4e00, #f10000);
   circles.forEach(function(circle, index) {
-    circle.x = 0
-    circle.y = 0
-    circle.style.backgroundColor = colors[index % colors.length];
-  })
-
-  window.addEventListener("mousemove", (event) => {
-    coords.x = event.pageX; // Use pageX instead of clientX
-    coords.y = event.pageY;
-  })
+    circle.x = 0;
+    circle.y = 0;
+    circle.style.backgroundColor = originalColors[index % originalColors.length];
+    circle.style.position = 'absolute';
+  });
   
-
-
+  window.addEventListener("mousemove", (event) => {
+    coords.x = event.pageX;
+    coords.y = event.pageY;
+  });
+  
+  // Function to set circle colors
+  function setCircleColors(colors) {
+    circles.forEach((circle, index) => {
+      circle.style.backgroundColor = colors[index % colors.length];
+    });
+  }
+  
+  // Add hover effects for buttons
+  buttons.forEach(button => {
+    button.addEventListener("mouseenter", () => {
+      setCircleColors(hoverColors); // Change to hover colors
+    });
+  
+    button.addEventListener("mouseleave", () => {
+      setCircleColors(originalColors); // Revert to original colors
+    });
+  });
+  
   function animateCircles() {
-
     let x = coords.x;
     let y = coords.y;
-
+  
     circles.forEach(function(circle, index) {
-      circle.style.left = x - 12 + "px";
-      circle.style.top = y - 12 + "px";
-
-      circle.style.scale = (circles.length - index) / 10;
-
-      circle.x = x;
-      circle.y = y;
-
-
+      circle.x += (x - circle.x) * 0.3;
+      circle.y += (y - circle.y) * 0.3;
+  
+      circle.style.left = circle.x - 12 + "px";
+      circle.style.top = circle.y - 12 + "px";
+  
+      const scale = (circles.length - index) / circles.length;
+      circle.style.transform = `scale(${scale})`;
+      circle.style.opacity = scale;
+  
       const nextCircle = circles[index + 1] || circles[0];
       x += (nextCircle.x - x) * 0.3;
       y += (nextCircle.y - y) * 0.3;
-    })
+    });
+  
     requestAnimationFrame(animateCircles);
   }
-
+  
   animateCircles();
+  
+  
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const navigationButtons = document.querySelectorAll('.navigation'); // Select all navigation buttons
+
+    // Add event listener to each button
+    navigationButtons.forEach(button => {
+      button.addEventListener('click', function (e) {
+        e.preventDefault(); // Prevent immediate action
+
+        // Add fade-out class for animation
+        document.body.classList.add('fade-out');
+
+        // Perform the action after the fade-out animation completes
+        setTimeout(() => {
+          // Check if button has a data-url attribute for navigation
+          if (button.dataset.url) {
+            window.location.href = button.dataset.url; // Redirect to the specified URL
+          } else {
+            button.form.submit(); // If it's a form button, submit the form
+          }
+        }, 500); // Match this timeout to the animation duration
+      });
+    });
+  });
   
 </script>
 </body>

@@ -2,8 +2,8 @@
 
 <div class="w-screen">
   <div class="w-full flex justify-center items-center no-cursor">
-    <form action="/" method="get" class="">
-      <button type="submit">Back</button>
+    <form action="/" method="get">
+      <button type="submit" class="navigation">Back</button>
     </form>
   </div>
   <div class="flex justify-center items-center">
@@ -13,7 +13,7 @@
           <img src=<%= image.url %> alt="image" class="w-full h-full object-cover group-hover:blur-sm group-hover:brightness-50 transition duration-300">
           <form action="/detail" method="get" class="absolute flex items-center justify-center inset-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible z-10 transition duration-300">
             <input type="text" name="image_url" value="<%= image.url %>" hidden>
-            <button type="submit" class="border-white">Detail</button>
+            <button type="submit" class="border-white navigation">Detail</button>
           </form>
         </div>
       <% }) %>
